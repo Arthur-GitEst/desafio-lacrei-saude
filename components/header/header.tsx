@@ -10,22 +10,19 @@ export default function Header() {
 
   return (
     <header
-      className="relative bg-linear-to-b from-green-20 to-gray-10 flex items-center justify-between px-6 md:px-10 lg:px-20 py-4"
+      className="relative bg-linear-to-b from-green-10 to-gray-10 flex items-center justify-between px-6 md:px-10 lg:px-30 py-8"
       aria-label="Cabeçalho principal"
       role="banner"
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-3">
         <Image
-          src="/logo.png"
+          src="/logo-header.svg"
           alt="Logo da Lacrei Saúde"
-          width={50}
-          height={13}
+          width={250}
+          height={52}
           priority
         />
-        <h2 className="text-emerald-60 font-bold text-headline-sm sm:text-lg md:text-headline-base">
-          Lacrei Saúde
-        </h2>
       </Link>
 
       {/* Botão de Menu Mobile */}
@@ -36,17 +33,14 @@ export default function Header() {
         aria-expanded={isMenuOpen}
         aria-controls="mobile-nav"
       >
-        <svg
+        <Image
+          src="/menu.svg"
+          alt=""
           width={24}
           height={24}
-          viewBox="0 0 24 24"
           className="text-gray-80"
-          fill="none"
-          stroke="currentColor"
           aria-hidden
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        />
       </button>
 
       {/* Navegação Desktop */}
