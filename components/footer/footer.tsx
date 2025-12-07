@@ -64,12 +64,6 @@ export default function Footer() {
           >
             Contato
           </Link>
-          <Link
-            href="/privacidade"
-            className="rounded-md px-4 py-2 text-gray-80 text-text-xl focus:outline-none focus:ring-2 focus:ring-emerald-60 hover:bg-green-20 transition duration-100"
-          >
-            Privacidade
-          </Link>
         </nav>
       </div>
       {/* Direitos autorais */}

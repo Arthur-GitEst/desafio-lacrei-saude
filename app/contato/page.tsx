@@ -32,7 +32,7 @@ export default function Contato() {
               </h2>
               <div className="flex gap-4">
                 <Link 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/lacreisaude/" 
                   target="_blank" 
                   aria-label="Instagram"
                   className="hover:opacity-80 transition-opacity"
@@ -40,7 +40,7 @@ export default function Contato() {
                   <Image src="/instagram.svg" alt="Instagram" width={32} height={32} />
                 </Link>
                 <Link 
-                  href="https://facebook.com" 
+                  href="https://www.facebook.com/lacrei.saude/" 
                   target="_blank" 
                   aria-label="Facebook"
                   className="hover:opacity-80 transition-opacity"
@@ -48,7 +48,7 @@ export default function Contato() {
                   <Image src="/facebook.svg" alt="Facebook" width={32} height={32} />
                 </Link>
                 <Link 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/company/lacreisaude/?originalSubdomain=br" 
                   target="_blank" 
                   aria-label="LinkedIn"
                   className="hover:opacity-80 transition-opacity"
