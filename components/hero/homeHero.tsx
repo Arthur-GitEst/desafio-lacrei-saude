@@ -30,6 +30,7 @@ export default function HomeHero() {
       height={200}
       priority
       className="rounded-2xl"
+      sizes="(max-width: 1024px) 100vw, 50vw"
       />
     </section>
   )
