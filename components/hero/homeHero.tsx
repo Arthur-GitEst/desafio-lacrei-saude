@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Hero() {
+export default function HomeHero() {
   return (
     <section
       aria-label="Seção Principal da Tela Inicial"

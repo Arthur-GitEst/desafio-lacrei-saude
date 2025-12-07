@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
       {/* Direitos autorais */}
       <div className="max-w-7xl mx-auto mt-6 text-center text-gray-80 text-text-xl">
-        © {new Date().getFullYear()} Lacrei Saúde. Todos os direitos reservados.
+        © {new Date().getFullYear()} Lacrei Saúde. Todos os direitos reservados. CNPJ:  51.265.351/0001-65
       </div>
     </footer>
   )
