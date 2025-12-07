@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         {/* Navegação */}
-        <nav aria-label="Links do rodapé" className="flex flex-wrap items-center gap-4 md:self-center">
+        <nav aria-label="Links do rodapé" className="flex flex-wrap items-center justify-center gap-4 md:self-center">
           <Link
             href="/sobre"
             className="rounded-md px-4 py-2 text-gray-80 text-text-xl focus:outline-none focus:ring-2 focus:ring-emerald-60 hover:bg-green-20 transition duration-100"
