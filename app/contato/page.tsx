@@ -1,5 +1,3 @@
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,8 +9,6 @@ export const metadata = {
 export default function Contato() {
   return (
     <>
-      <Header />
-      <main>
         <section 
           aria-label="Entre em contato" 
           className="max-w-7xl mx-auto flex flex-col gap-12 md:flex-row md:items-start px-8 py-16"
@@ -107,8 +103,6 @@ export default function Contato() {
             </form>
           </div>
         </section>
-      </main>
-      <Footer />
     </>
   );
 }
