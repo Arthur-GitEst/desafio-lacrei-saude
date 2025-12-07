@@ -79,20 +79,10 @@ Para uma restauracao imediata sem alteracao de codigo (Instant Rollback):
 
 ### Justificativas
 
-A arquitetura foi pensada para ser escalável. A separação de componentes (Header, Footer, Hero) facilita a reutilização e manutenção. A preocupação com acessibilidade (uso de tags semânticas como main, section, nav e atributos aria) reflete o core business da Lacrei Saúde: a inclusão.
+A arquitetura foi pensada para ser escalável. A separação de componentes (Header, Footer, Hero) facilita a reutilização e manutenção. A preocupação com acessibilidade (uso de tags semânticas como main, section, nav e atributos aria) reflete os valores de inclusão da Lacrei Saúde.
 
 - TypeScript: Adotado para garantir tipagem estatica, reduzindo erros em tempo de execucao e melhorando a manutencao do codigo.
 - Sharp: Biblioteca adicionada para otimizacao de imagens em producao, essencial para a performance do Next.js.
-
-### Escolhas Visuais
-
-- Paleta de Cores: Foram utilizadas as cores da marca (tons de esmeralda e verde) para transmitir confianca, saude e acolhimento. O uso de cinzas neutros para textos garante boa legibilidade.
-- Tipografia: A fonte 'Nunito' foi usada para titulos por sua caracteristica amigavel e arredondada, enquanto a 'Inter' ou fontes padrao sans-serif foram usadas para corpo de texto visando clareza.
-- Layout Limpo: O design prioriza o espaco em branco (whitespace) para evitar sobrecarga cognitiva e focar na mensagem de inclusao.
-
-### Justificativas
-
-A arquitetura foi pensada para ser escalavel. A separacao de componentes (Header, Footer, Hero) facilita a reutilizacao e manutencao. A preocupacao com acessibilidade (uso de tags semanticas como main, section, nav e atributos aria) reflete o core business da Lacrei Saude: a inclusao.
 
 ## Otimização
 
