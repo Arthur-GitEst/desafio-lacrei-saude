@@ -40,7 +40,7 @@ O projeto foi configurado para deploy na plataforma Vercel.
 2. As configurações de build (npm run build) e output são detectadas automaticamente.
 3. Cada push na branch main dispara um novo deploy de produção.
 
-**Link do Projeto:** desafio-lacrei-saude-1166hv4rp-arthur-estgits-projects.vercel.app
+**Link do Projeto:** [desafio-lacrei-saude-1166hv4rp-arthur-estgits-projects.vercel.app](https://vercel.com/arthur-estgits-projects/desafio-lacrei-saude)
 
 ## Proposta de Rollback
 
