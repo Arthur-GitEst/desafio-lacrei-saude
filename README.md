@@ -50,15 +50,23 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento na sua máqu
 
 ## Verificação de Qualidade (Testes)
 
-Atualmente, o projeto utiliza o **ESLint** para garantir a qualidade do código e identificar possíveis erros estáticos.
+O projeto utiliza **ESLint** para análise estática e **Jest** com **React Testing Library** para testes unitários.
 
-Para rodar a verificação de linting:
-
+### Linting
+Para verificar a qualidade do código e identificar erros estáticos:
 ```bash
 npm run lint
 ```
 
-_Nota: Testes unitários e de integração podem ser adicionados futuramente utilizando ferramentas como Jest ou Vitest._
+### Testes Unitários
+Para executar os testes dos componentes (Header, Footer, ContactSection, etc.):
+```bash
+npm test
+```
+Para rodar os testes em modo watch (observação):
+```bash
+npm run test:watch
+```
 
 ## Build e Produção
 
