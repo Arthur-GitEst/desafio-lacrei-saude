@@ -1,103 +1,148 @@
 # Desafio Lacrei Saude
 
-Este projeto e uma aplicacao web desenvolvida como parte do desafio tecnico da Lacrei Saude. O objetivo e criar uma interface acessivel, responsiva e performatica.
+Este projeto e uma aplicacao web desenvolvida como parte do desafio tecnico da Lacrei Saude. O objetivo e criar uma interface acessivel, responsiva e performática.
 
-## Instrucoes para rodar o projeto localmente
+## Tecnologias Utilizadas
 
-Pre-requisitos: Node.js (versao 18 ou superior) e npm.
+- **Framework:** Next.js 16 (App Router)
+- **Linguagem:** TypeScript
+- **Estilização:** Styled Components
+- **Otimização de Imagem:** Sharp
+- **Qualidade de Código:** ESLint
 
-1. Clone o repositório:
+## Instalação e Execução Local
+
+Siga os passos abaixo para configurar o ambiente de desenvolvimento na sua máquina.
+
+### Pré-requisitos
+
+- **Node.js:** Versão 18 ou superior.
+- **npm:** Gerenciador de pacotes (geralmente instalado com o Node.js).
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+
+   ```bash
    git clone https://github.com/Arthur-GitEst/desafio-lacrei-saude.git
+   ```
 
-2. Acesse o diretório do projeto:
+2. **Acesse o diretório do projeto:**
+
+   ```bash
    cd desafio-lacrei-saude
+   ```
 
-3. Instale as dependências:
+3. **Instale as dependências:**
+
+   ```bash
    npm install
+   ```
 
-4. Execute o servidor de desenvolvimento:
+4. **Execute o servidor de desenvolvimento:**
+
+   ```bash
    npm run dev
+   ```
 
-5. Acesse a aplicação no navegador em: http://localhost:3000
+5. **Acesse a aplicação:**
+   Abra o navegador e vá para [http://localhost:3000](http://localhost:3000).
 
-## Instrucoes para build e deploy
+## Verificação de Qualidade (Testes)
 
-### Build Local
+Atualmente, o projeto utiliza o **ESLint** para garantir a qualidade do código e identificar possíveis erros estáticos.
 
-Para gerar uma versão otimizada para produção localmente:
+Para rodar a verificação de linting:
 
-1. Execute o comando de build:
+```bash
+npm run lint
+```
+
+_Nota: Testes unitários e de integração podem ser adicionados futuramente utilizando ferramentas como Jest ou Vitest._
+
+## Build e Produção
+
+Para simular o ambiente de produção localmente ou preparar a aplicação para deploy:
+
+1. **Gere o build de produção:**
+   Este comando cria uma versão otimizada da aplicação na pasta `.next`.
+
+   ```bash
    npm run build
+   ```
 
-2. Inicie o servidor de producao:
+2. **Inicie o servidor de produção:**
+   Este comando serve a aplicação construída anteriormente.
+   ```bash
    npm start
+   ```
 
-### Deploy
+## Deploy
 
-O projeto foi configurado para deploy na plataforma Vercel.
+O projeto foi configurado para deploy contínuo (CI/CD) na plataforma **Vercel**, que é a recomendada para aplicações Next.js.
 
-1. Conecte o repositório GitHub a Vercel.
-2. As configurações de build (npm run build) e output são detectadas automaticamente.
-3. Cada push na branch main dispara um novo deploy de produção.
+### Processo Automático
 
-**Link do Projeto:** [desafio-lacrei-saude-1166hv4rp-arthur-estgits-projects.vercel.app](https://vercel.com/arthur-estgits-projects/desafio-lacrei-saude)
+1. O repositório GitHub está conectado à Vercel.
+2. Qualquer **push** na branch `main` dispara automaticamente um novo processo de build e deploy.
+3. A Vercel detecta automaticamente as configurações (`npm run build` e diretório de saída).
 
-## Proposta de Rollback
+**Link do Deploy:** [desafio-lacrei-saude-two.vercel.app](https://desafio-lacrei-saude-two.vercel.app)
 
-### Rollback Simples (Via Git)
+## Estratégia de Rollback
 
-Caso seja necessário reverter uma alteração no codigo fonte:
+Caso uma nova versão apresente problemas em produção, existem duas estratégias principais para reverter as alterações.
 
-1. Identifique o hash do commit estavel anterior.
-2. Execute: git revert <hash-do-commit-problematico>
-3. Faca o push da alteração para a branch main.
-4. O pipeline de deploy da Vercel atualizará a produçãoo automaticamente.
+### 1. Rollback Instantâneo (Recomendado - Via Vercel)
 
-### Rollback Funcional (Via Plataforma Vercel)
-
-Para uma restauracao imediata sem alteracao de codigo (Instant Rollback):
+Esta é a forma mais rápida de restaurar o serviço, pois não requer novo build.
 
 1. Acesse o dashboard do projeto na Vercel.
-2. Vá ate a aba "Deployments".
-3. Localize o deploy anterior que estava estável.
-4. Clique no menu de opções (tres pontos) e selecione "Instant Rollback".
-5. A versão anterior sera promovida a produção instantaneamente.
+2. Vá até a aba **"Deployments"**.
+3. Localize o deploy anterior que estava estável (marcado como "Ready").
+4. Clique no menu de opções (três pontos) e selecione **"Instant Rollback"**.
+5. A versão anterior será promovida a produção imediatamente.
 
-## Comentarios sobre as escolhas visuais e tecnicas
+### 2. Rollback via Código (Via Git)
 
-### Escolhas Tecnicas
+Utilize este método se precisar corrigir o histórico do repositório.
 
-- Next.js 16 (App Router): Escolhido pela performance, otimizacao de SEO nativa e arquitetura moderna baseada em Server Components.
-- TypeScript: Adotado para garantir tipagem estática, reduzindo erros em tempo de execução e melhorando a manutenção do código.
-- Sharp: Biblioteca adicionada para otimização de imagens em produção, essencial para a performance do Next.js.
+1. Identifique o hash do commit estável anterior:
+   ```bash
+   git log --oneline
+   ```
+2. Crie um novo commit que reverte as alterações problemáticas:
+   ```bash
+   git revert <hash-do-commit-problematico>
+   ```
+3. Envie a alteração para a branch `main`:
+   ```bash
+   git push origin main
+   ```
+4. O pipeline da Vercel detectará o novo commit e fará o deploy da versão corrigida.
+
+## Decisões de Projeto
+
+### Escolhas Técnicas
+
+- **Next.js 16 (App Router):** Escolhido pela performance, otimização de SEO nativa e arquitetura moderna baseada em Server Components.
+- **Styled Components:** Adotado para estilização componentizada, permitindo CSS dinâmico e escopado, facilitando a manutenção e evitando conflitos de classes.
+- **TypeScript:** Utilizado para garantir tipagem estática, reduzindo erros em tempo de execução e melhorando a experiência de desenvolvimento (IntelliSense).
 
 ### Escolhas Visuais
 
-- Paleta de Cores: Foram utilizadas as cores da marca (tons de esmeralda e verde) para transmitir confiança, saúde e acolhimento. O uso de cinzas neutros para textos garante boa legibilidade.
-- Tipografia: A fonte 'Nunito' foi usada para títulos por sua característica amigável e arredondada, enquanto a 'Inter' ou fontes padrão sans-serif foram usadas para corpo de texto visando clareza.
-- Layout Limpo: O design prioriza o espaço em branco (whitespace) para evitar sobrecarga cognitiva e focar na mensagem de inclusão.
+- **Paleta de Cores:** Tons de esmeralda e verde para transmitir confiança, saúde e acolhimento, alinhados à identidade da Lacrei Saúde.
+- **Tipografia:** Uso de variáveis CSS (`--text-headline`, `--text-text`) para manter consistência nos tamanhos de fonte em toda a aplicação.
+- **Acessibilidade:** Uso de tags semânticas (`main`, `section`, `nav`) e atributos `aria` para garantir que a aplicação seja navegável por leitores de tela.
 
-### Justificativas
+## Otimização e Performance
 
-A arquitetura foi pensada para ser escalável. A separação de componentes (Header, Footer, Hero) facilita a reutilização e manutenção. A preocupação com acessibilidade (uso de tags semânticas como main, section, nav e atributos aria) reflete os valores de inclusão da Lacrei Saúde.
+Para garantir uma experiência de usuário fluida:
 
-- TypeScript: Adotado para garantir tipagem estatica, reduzindo erros em tempo de execucao e melhorando a manutencao do codigo.
-- Sharp: Biblioteca adicionada para otimizacao de imagens em producao, essencial para a performance do Next.js.
-
-## Otimização
-
-### Métodos de Desempenho Utilizados
-
-Para garantir uma experiência de usuário fluida e rápida, foram aplicadas as seguintes técnicas de otimização:
-
-- **Next/Image:** Utilização do componente nativo de imagens do Next.js para carregamento lazy (lazy loading), redimensionamento automático e conversão para formatos modernos como WebP.
-- **Code Splitting:** O Next.js realiza automaticamente a divisão de código por rota, garantindo que apenas o JavaScript necessário para a página atual seja carregado.
-- **Font Optimization:** Uso do `next/font` para carregar fontes de forma otimizada, evitando Layout Shift (CLS) e melhorando o tempo de carregamento.
-- **Server Components:** A maior parte da renderização ocorre no servidor, reduzindo o tamanho do bundle enviado para o cliente e acelerando o First Contentful Paint (FCP).
-
-### Teste Lighthouse
-
-O projeto foi auditado utilizando a ferramenta Google Lighthouse para garantir métricas de qualidade. Os resultados obtidos refletem o compromisso com a performance e acessibilidade:
+- **Next/Image:** Carregamento lazy, redimensionamento automático e formatos modernos (WebP).
+- **Code Splitting:** Divisão automática de código por rota.
+- **Server Components:** Renderização no servidor para reduzir o JavaScript enviado ao cliente.
+- **Font Optimization:** Carregamento otimizado de fontes para evitar Layout Shift (CLS).
 
 ![Resultado do Teste Lighthouse](public/teste-lighthouse.png)
 
@@ -105,5 +150,7 @@ O projeto foi auditado utilizando a ferramenta Google Lighthouse para garantir m
 - **Acessibilidade:** 96
 - **Best Practices:** 100
 - **SEO:** 100
+
+**Link do Resultado do Teste:** https://pagespeed.web.dev/analysis/https-desafio-lacrei-saude-two-vercel-app/ho8mc62j3p?hl=pt&form_factor=desktop
 
 Esses resultados confirmam que a aplicação é rápida, acessível para leitores de tela e segue as melhores práticas de desenvolvimento web moderno.
