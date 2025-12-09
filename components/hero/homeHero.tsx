@@ -1,37 +1,123 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
+
+const HeroSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 4rem 2rem;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    padding: 4rem 5rem;
+  }
+`
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 32rem; /* max-w-lg */
+
+  @media (min-width: 1024px) {
+    align-items: flex-start;
+  }
+`
+
+const Title = styled.h2`
+  color: var(--color-gray-80);
+  font-size: var(--text-headline-base);
+  font-weight: 700;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-headline-xl);
+    text-align: left;
+  }
+`
+
+const Divider = styled.span`
+  display: block;
+  width: 100%;
+  height: 0.125rem; /* h-0.5 */
+  background-color: var(--color-emerald-70);
+
+  @media (min-width: 1024px) {
+    width: 40%; /* w-2/5 */
+  }
+`
+
+const Description = styled.p`
+  color: var(--color-gray-70);
+  font-size: var(--text-text-xl);
+  text-align: center;
+
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-headline-base);
+  }
+`
+
+const ConhecaButton = styled.button`
+  margin-top: 1rem;
+  display: inline-block;
+  border-radius: 0.375rem;
+  background-color: var(--color-emerald-60);
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-size: var(--text-text-xl);
+  font-weight: 500;
+  transition: background-color 100ms;
+  border: none;
+
+  &:hover {
+    background-color: var(--color-emerald-70);
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-emerald-60);
+  }
+`
+
+const StyledImage = styled(Image)`
+  border-radius: 1rem; /* rounded-2xl */
+  max-width: 100%;
+  height: auto;
+`
 
 export default function HomeHero() {
   return (
-    <section
-      aria-label="Seção Principal da Tela Inicial"
-      className="w-full flex items-center justify-center gap-12 px-8 md:px-8 lg:px-20 py-16 flex-col lg:flex-row"
-    >
-      <div className="flex flex-col items-center lg:items-start gap-4 max-w-lg">
-        <h2 className="text-gray-80 text-headline-base lg:text-headline-xl font-bold text-center lg:text-start">Conheça nossa comunidade</h2>
-        <span className="block w-full lg:w-2/5 bg-emerald-70 h-0.5"
-        aria-hidden
-        />
-        <p className="text-gray-70 text-text-xl lg:text-headline-base text-center md:text-start">Saiba mais sobre a Lacrei Saúde e conheça o nosso trabalho.</p>
-        <Link
-          href="/sobre"
-        >
-          <button
-            className="mt-4 inline-block rounded-md bg-emerald-60 px-6 py-3 text-white text-text-xl font-medium hover:bg-emerald-70 focus:outline-none focus:ring-2 focus:ring-emerald-60 transition duration-100 hover:cursor-pointer"
-          >
+    <HeroSection aria-label="Seção Principal da Tela Inicial">
+      <ContentWrapper>
+        <Title>Conheça nossa comunidade</Title>
+        <Divider aria-hidden />
+        <Description>Saiba mais sobre a Lacrei Saúde e conheça o nosso trabalho.</Description>
+        <Link href="/sobre">
+          <ConhecaButton>
             Conhecer
-          </button>
+          </ConhecaButton>
         </Link>
-      </div>
-      <Image
-      src="/hero-image.jpg"
-      alt="Imagem do Hero"
-      width={700}
-      height={200}
-      priority
-      className="rounded-2xl"
-      sizes="(max-width: 1024px) 100vw, 50vw"
+      </ContentWrapper>
+      <StyledImage
+        src="/hero-image.jpg"
+        alt="Imagem do Hero"
+        width={700}
+        height={200}
+        priority
+        sizes="(max-width: 1024px) 100vw, 50vw"
       />
-    </section>
+    </HeroSection>
   )
 }

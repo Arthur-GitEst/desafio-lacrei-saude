@@ -3,19 +3,128 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import styled from "styled-components"
+
+const HeaderContainer = styled.header`
+  position: relative;
+  background: linear-gradient(to bottom, var(--color-green-10), var(--color-gray-10));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 2rem 7.5rem;
+  }
+`
+
+const NavDesktop = styled.nav`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+`
+
+const NavLink = styled(Link)`
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-gray-80);
+  font-size: var(--text-text-xl);
+  transition: background-color 100ms;
+
+  &:hover {
+    background-color: var(--color-green-20);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-green-60);
+  }
+`
+
+const MobileMenuButton = styled.button`
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  background: transparent;
+  border: none;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-emerald-60);
+  }
+`
+
+const MobileNav = styled.nav<{ $isOpen: boolean }>`
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-gray-20);
+  overflow: hidden;
+  transition: all 300ms ease-out;
+  
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  transform: ${({ $isOpen }) => ($isOpen ? "translateY(0)" : "translateY(-0.5rem)")};
+  max-height: ${({ $isOpen }) => ($isOpen ? "24rem" : "0")};
+  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
+const MobileNavContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+`
+
+const MobileNavLink = styled(Link)`
+  display: inline-flex;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--color-emerald-70);
+
+  &:hover {
+    background-color: var(--color-emerald-10); /* emerald-50 was likely a typo in original, using lighter shade */
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-emerald-60);
+  }
+`
+
+const Divider = styled.span`
+  display: block;
+  height: 1px;
+  background-color: var(--color-gray-20);
+`
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const toggleMenu = () => setIsMenuOpen((prev) => !prev)
 
   return (
-    <header
-      className="relative bg-linear-to-b from-green-10 to-gray-10 flex items-center justify-between px-6 md:px-10 lg:px-30 py-8"
-      aria-label="Cabeçalho principal"
-      role="banner"
-    >
+    <HeaderContainer aria-label="Cabeçalho principal" role="banner">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-3">
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
         <Image
           src="/logo-header.svg"
           alt="Logo da Lacrei Saúde"
@@ -26,9 +135,8 @@ export default function Header() {
       </Link>
 
       {/* Botão de Menu Mobile */}
-      <button
+      <MobileMenuButton
         onClick={toggleMenu}
-        className="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-60"
         aria-label={isMenuOpen ? "Fechar Menu" : "Abrir Menu"}
         aria-expanded={isMenuOpen}
         aria-controls="mobile-nav"
@@ -38,56 +146,30 @@ export default function Header() {
           alt=""
           width={24}
           height={24}
-          className="text-gray-80"
+          style={{ color: 'var(--color-gray-80)' }}
           aria-hidden
         />
-      </button>
+      </MobileMenuButton>
 
       {/* Navegação Desktop */}
-      <nav
-        className="hidden md:flex items-center gap-6"
-        role="navigation"
-        aria-label="Menu Principal (Desktop)"
-      >
-        <Link
-          href="/sobre"
-          className="rounded-md px-4 py-3 text-gray-80 text-text-xl focus:outline-none focus:ring-2 focus:ring-green-60 hover:bg-green-20 transition duration-100"
-        >
-          Sobre Nós
-        </Link>
-        <Link href="/contato" className="rounded-md px-4 py-3 text-gray-80 text-text-xl focus:outline-none focus:ring-2 focus:ring-green-60 hover:bg-green-20 transition duration-100">
-          Contato
-        </Link>
-      </nav>
+      <NavDesktop role="navigation" aria-label="Menu Principal (Desktop)">
+        <NavLink href="/sobre">Sobre Nós</NavLink>
+        <NavLink href="/contato">Contato</NavLink>
+      </NavDesktop>
 
       {/* Dropdown Mobile */}
-      <nav
+      <MobileNav
         id="mobile-nav"
         role="navigation"
         aria-label="Menu principal (Mobile)"
-        className={`
-          absolute left-0 top-full w-full md:hidden bg-white shadow-lg border-t border-gray-20
-          overflow-hidden
-          transition-all duration-300 ease-out
-          ${isMenuOpen ? "opacity-100 translate-y-0 max-h-96" : "opacity-0 -translate-y-2 max-h-0 pointer-events-none"}
-        `}
+        $isOpen={isMenuOpen}
       >
-        <div className="flex flex-col gap-2 px-6 py-4">
-          <Link
-            href="/sobre"
-            className="inline-flex rounded-md px-4 py-3 font-semibold text-emerald-70 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-60"
-          >
-            Sobre Nós
-          </Link>
-          <span className="block h-px bg-gray-20" />
-          <Link
-            href="/contato"
-            className="inline-flex rounded-md px-4 py-3 font-semibold text-emerald-70 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-60"
-          >
-            Contato
-          </Link>
-        </div>
-      </nav>
-    </header>
+        <MobileNavContent>
+          <MobileNavLink href="/sobre">Sobre Nós</MobileNavLink>
+          <Divider />
+          <MobileNavLink href="/contato">Contato</MobileNavLink>
+        </MobileNavContent>
+      </MobileNav>
+    </HeaderContainer>
   )
 }
